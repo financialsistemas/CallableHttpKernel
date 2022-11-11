@@ -2,11 +2,12 @@
 
 namespace functional;
 
+use PHPUnit\Framework\TestCase;
 use Stack\CallableHttpKernel;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class BasicTest extends \PHPUnit_Framework_TestCase
+class BasicTest extends TestCase
 {
     /** @dataProvider provideRequests */
     public function testHelloWorld(Request $request)
@@ -36,15 +37,13 @@ class BasicTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(new Response('2'), $response);
     }
 
-    /**
-     * @expectedException UnexpectedValueException
-     * @test
-     */
     public function nonResponseReturnValueShouldThrowException()
     {
         $kernel = new CallableHttpKernel(function (Request $request) {
             return 'foo';
         });
+
+        $this->expectException(\UnexpectedValueException::class);
 
         $kernel->handle(Request::create('/'));
     }

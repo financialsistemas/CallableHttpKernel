@@ -2,11 +2,12 @@
 
 namespace Stack;
 
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 
-class CallableHttpKernelTest extends \PHPUnit_Framework_TestCase
+class CallableHttpKernelTest extends TestCase
 {
     /** @test */
     public function handleShouldDelegateToCallable()

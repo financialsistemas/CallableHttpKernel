@@ -1,1 +1,3 @@
 vendor
+phpunit.xml.dist.bak
+.phpunit.result.cache
